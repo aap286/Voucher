@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="{{ url_for('static', filename='formStyle.css') }}"
+    />
+
+    <!-- Include jQuery library -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <!-- Include jQuery UI Datepicker CSS -->
+    <link
+      rel="stylesheet"
+      href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css"
+    />
+
+    <!-- Include jQuery UI Datepicker JavaScript -->
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+    <title>Form</title>
+  </head>
+  <body>
+    <h1>Cash/Bank Voucher</h1>
+    <form method="POST" action="/submission">
+      <div class="InputContainer">
+        <label for="Debit"> Debit </label>
+        <select type="text" id="debit" name="Debit" required>
+          <option value="">Select Debit</option>
+          {% for debitValue in debitDropdown %}
+          <option value="{{debitValue}}">{{debitValue}}</option>
+          {% endfor %}
+        </select>
+        <br /><br />
+      </div>
+
+      <div class="InputContainer">
+        <label for="date">Date</label>
+        <input type="text" id="date" name="Date" required /> <br /><br />
+      </div>
+
+      <div class="InputContainer">
+        <label for="Pay"> Pay To </label>
+        <input type="text" id="pay" name="Pay" required /><br /><br />
+      </div>
+
+      <div class="InputContainer">
+        <label for="price"> Rs. (In digits) </label>
+        <input
+          type="text"
+          id="price"
+          name="Price"
+          pattern="[0-9]+"
+          required
+        /><br /><br />
+      </div>
+
+      <div class="InputContainer">
+        <label for="paymentType">Paid by Cash/Cheque No</label>
+        <select id="paymentType" name="paymentType" required>
+          <option value="">Select Payment Type</option>
+          <option value="Cash">Cash</option>
+          <option value="Cheque">Cheque</option>
+        </select>
+        <br /><br />
+      </div>
+
+     <section id="chequeContainer">
+       <div class="InputContainer" id="datedContainer">
+        <label for="dated">Dated</label>
+        <input type="text" id="dated" name="Dated" required />
+        <br /><br />
+      </div>
+
+      <div class="InputContainer" id="datedContainer">
+        <label for="Bank"> Bank Name </label>
+        <select type="text" id="bankName" name="bankName" required>
+          <option value="">Select Bank</option>
+          {% for name in bankNames %}
+          <option value="{{name}}">{{name}}</option>
+          {% endfor %}
+        </select>
+        <br /><br />
+      </div>
+    </section>
+
+      <div class="InputContainer">
+        <label for="Being"> Being </label>
+        <input type="text" id="being" name="Being" required /><br /><br />
+      </div>
+
+      <input type="submit" value="Submit" />
+    </form>
+
+    <script>
+      $(function () {
+        // Initialize the datepicker
+        $("#date").datepicker({
+          dateFormat: "dd/mm/yy",
+          defaultDate: 0
+        });
+
+        $("#dated").datepicker({
+          dateFormat: "dd/mm/yy",
+        });
+      });
+    </script>
+
+    <script>
+      window.addEventListener("load", function () {
+        var chequeContainer = document.getElementById("chequeContainer");
+        var datedContainers = document.querySelectorAll("#datedContainer");
+        var paymentTypeSelect = document.getElementById("paymentType");
+        var dated = document.getElementById("dated");
+        var bankName = document.getElementById("bankName");
+
+        function updatePaymentType() {
+          if (paymentTypeSelect.value === "Cheque") {
+           // datedContainers.forEach(function (container) {
+           //   container.style.display = "block";
+           
+           //});
+           chequeContainer.style.display = "block";
+            dated.required = true;
+            bankName.required = true;
+          } else {
+            //datedContainers.forEach(function (container) {
+             // container.style.display = "none";
+            //});
+            chequeContainer.style.display = "none";
+            dated.required = false;
+            bankName.required = false;
+          }
+        }
+
+        // Call the updatePaymentType function initially
+        updatePaymentType();
+
+        // Add change event listener to paymentTypeSelect
+        paymentTypeSelect.addEventListener("change", updatePaymentType);
+      });
+    </script>
+  </body>
+</html>

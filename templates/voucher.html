@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <style>
+      @media print {
+        #print-button {
+          display: none;
+        }
+
+        #back-button {
+          display: none;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <table>
+      <tr>
+        <th>OXFORD VILLAGE CONDOMINIUM</th>
+      </tr>
+      <tr>
+        <td>(Regd. No. 803./1998)</td>
+      </tr>
+      <tr>
+        <td>
+          WANOWRIE, PUNE - 411 040. TEL: 020-41253883 Email:
+          oxfordvillage@gmail.com
+        </td>
+      </tr>
+      <tr>
+        <td>CASH/BANK VOUCHER</td>
+        <td>Debit: {{data[1]}}</td>
+      </tr>
+      <tr>
+        <td>No: {{data[0]}}</td>
+        <td>Date: {{data[2]}}</td>
+      </tr>
+      <tr>
+        <td>PAY TO {{data[3]}}</td>
+      </tr>
+      <tr>
+        <td>Rs. (In words) {{data[4]}}</td>
+      </tr>
+      <tr>
+        <td>Paid By {{data[5]}}</td>
+        <td>Dated {{data[6]}}</td>
+        <td>Bank Name {{data[7]}}</td>
+      </tr>
+      <tr>
+        <td>Being {{data[9]}}</td>
+      </tr>
+      <tr>
+        <td>Prepared By</td>
+        <td>Authorized By</td>
+        <td>Reciever's Signature</td>
+      </tr>
+    </table>
+
+    <button id="print-button" onclick="window.print()">Print</button>
+    <button id="back-button"><a href="/">Back</a></button>
+  </body>
+</html>
