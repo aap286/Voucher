@@ -1,53 +1,51 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <style>
-      @media print {
-        #print-button {
-          display: none;
-        }
-
-        #back-button {
-          display: none;
-        }
-      }
-    </style>
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="{{ url_for('static', filename='voucherStyle.css') }}"
+    />
   </head>
   <body>
     <table>
-      <tr>
-        <th>OXFORD VILLAGE CONDOMINIUM</th>
+      <tr class="header">
+        <th colspan="3">OXFORD VILLAGE CONDOMINIUM</th>
       </tr>
       <tr>
-        <td>(Regd. No. 803./1998)</td>
+        <td colspan="3">(Regd. No. 803./1998)</td>
       </tr>
       <tr>
-        <td>
+        <td colspan="3">
           WANOWRIE, PUNE - 411 040. TEL: 020-41253883 Email:
           oxfordvillage@gmail.com
         </td>
       </tr>
       <tr>
         <td>CASH/BANK VOUCHER</td>
+        <td></td>
         <td>Debit: {{data[1]}}</td>
       </tr>
       <tr>
         <td>No: {{data[0]}}</td>
+        <td></td>
         <td>Date: {{data[2]}}</td>
       </tr>
       <tr>
-        <td>PAY TO {{data[3]}}</td>
+        <td colspan="3">PAY TO {{data[3]}}</td>
       </tr>
       <tr>
         <td>Rs. (In words) {{data[4]}}</td>
       </tr>
       <tr>
         <td>Paid By {{data[5]}}</td>
+        {% if data[5] == "Cheque" %}
         <td>Dated {{data[6]}}</td>
         <td>Bank Name {{data[7]}}</td>
+        {% endif %}
       </tr>
       <tr>
-        <td>Being {{data[9]}}</td>
+        <td>Being {{data[-1]}}</td>
       </tr>
       <tr>
         <td>Prepared By</td>
