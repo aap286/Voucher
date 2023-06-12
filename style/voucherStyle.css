@@ -6,23 +6,115 @@
   #back-button {
     display: none;
   }
+
+  table {
+    border: solid #002d62 !important;
+    border-width: 1px 0 0 1px !important;
+  }
+  th,
+  td {
+    border: solid #002d62 !important;
+    border-width: 0 1px 1px 0 !important;
+  }
 }
 
 table {
-    background-color: bisque;
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: 5%;
-     border-collapse: collapse;
+  /* background-color:  #6CB4EE; */
+  background-color: #b3c6db;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 5%;
+  border-collapse: collapse;
+  font-size: 16px;
+  color: #002d62;
+  font-family: "HelveticaNeue";
+  box-sizing: border-box;
 }
 
- th, td {
-    border: 1px solid black; /* Add a solid black border to table headers and cells */
-    padding: 8px; /* Add padding to create space between content and borders */
-  }
+th,
+td {
+  border: 2px solid white;
+  padding: 10px;
+}
 
+td {
+  background-color: #e3edf8;
+}
 .header th {
-    grid-column: 1 / span 3;
-    background-color: burlywood;
+  font-size: 22px;
+  /* background-color: #002D62; */
 }
 
+/* ? underlines */
+span {
+  text-decoration: underline;
+}
+
+.biggerCols {
+  width: 50%;
+}
+
+.smallerCols {
+  width: 70%;
+}
+
+.Subheading {
+  text-align: center;
+  font-size: 20px;
+}
+
+.payCell {
+  height: 50px;
+  vertical-align: top;
+}
+
+.beingCell {
+  height: 100px;
+  vertical-align: top;
+}
+
+tr:last-child td {
+  padding-top: 40px;
+}
+
+tr:last-child td div {
+  padding-top: 10px;
+  border-top: 2px solid #002d62;
+}
+
+
+
+/* ? buttons */
+.buttons {
+  margin-top: 40px;
+  display: flex;
+  gap: 70px;
+  justify-content: center;
+}
+
+
+button {
+  height: 50px;
+  width: 10%;
+  border-radius: 5px;
+  background-color: #e3edf8;
+  outline: transparent;
+  border: none;
+  color: #002d62;
+  font-size: 20px;
+  font-family: "HelveticaNeue";
+  transition: 0.5s;
+  font-weight: 545;
+}
+
+button a {
+  text-decoration: none;
+}
+
+button:hover {
+  background-color: #b3c6db;
+}
+
+button a:visited {
+  color: #002d62;
+}

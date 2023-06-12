@@ -6,12 +6,6 @@
   font-family: 'HelveticaNeue','Arial', sans-serif; /*"Roboto Slab";*/
 }
 
-:root {
-  --primary: #1a5653;
-  --secondary: #107869;
-  --tertiary: #838181;
-}
-
 html {
   height: 100%;
 }
