@@ -1,0 +1,3 @@
+1	item1	23/06/2023	e	thirty-three	Cash	President	ee	
+2	item1	17/06/2023	ml	zero	Cash	President	mm	
+3	item1	10/06/2023	jh	eight hundred and ninety	Cash	President	nb	

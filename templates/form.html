@@ -34,12 +34,18 @@
         </div>
 
         <div class="InputContainer">
-          <input type="text" id="date" name="Date" required />
+          <input
+            type="text"
+            id="date"
+            name="Date"
+            required
+            autocomplete="off"
+          />
           <label for="date">Date</label>
         </div>
 
         <div class="InputContainer">
-          <input type="text" id="pay" name="Pay" required />
+          <input type="text" id="pay" name="Pay" required autocomplete="off" />
           <label for="Pay"> Pay To </label>
         </div>
 
@@ -50,6 +56,7 @@
             name="Price"
             pattern="[0-9]+"
             required
+            autocomplete="off"
           />
           <label for="price"> Rs. (In digits) </label>
         </div>
@@ -65,7 +72,13 @@
 
         <section id="chequeContainer">
           <div class="InputContainer">
-            <input type="text" id="dated" name="Dated" required />
+            <input
+              type="text"
+              id="dated"
+              name="Dated"
+              required
+              autocomplete="off"
+            />
             <label for="dated">Dated</label>
           </div>
 
@@ -85,6 +98,7 @@
               id="chequeNo"
               name="chequeNo"
               required
+              autocomplete="off"
             />
             <label for="chequeNo">Cheque Number</label>
           </div>
@@ -106,6 +120,7 @@
             rows="4"
             cols="50"
             required
+            autocomplete="off"
           ></textarea>
           <label for="Being" placeholder="Being">Being</label>
         </div>
@@ -137,7 +152,7 @@
     <script>
       window.addEventListener("load", function () {
         var chequeContainer = document.getElementById("chequeContainer");
-        var paymentTypeSelect = document.getElementById("paymentType"); 
+        var paymentTypeSelect = document.getElementById("paymentType");
         var dated = document.getElementById("dated");
         var bankName = document.getElementById("bankName");
         var chequeNo = document.getElementById("chequeNo");

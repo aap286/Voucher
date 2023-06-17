@@ -8,53 +8,7 @@
     />
   </head>
   <body>
-    <table>
-      <tr class="header">
-        <th colspan="3">OXFORD VILLAGE CONDOMINIUM</th>
-      </tr>
-      <tr>
-        <td colspan="3" class="Subheading">(Regd. No. 803./1998)</td>
-      </tr>
-      <tr>
-        <td colspan="3" class="Subheading">
-          WANOWRIE, PUNE - 411 040. TEL: 020-41253883 Email:
-          oxfordvillage@gmail.com
-        </td>
-      </tr>
-      <tr>
-        <td colspan="1" class="biggerCols">CASH/BANK VOUCHER</td>
-        <td colspan="2">Debit: {{data[1]}}</td>
-      </tr>
-      <tr>
-        <td colspan="2" class="smallerCols">No: {{data[0]}}</td>
-        <td colspan="1">Date: {{data[2]}}</td>
-      </tr>
-      <tr class="payCell">
-        <td colspan="3">PAY TO: <span>{{data[3]}}</span></td>
-      </tr>
-      <tr class="payCell">
-        <td colspan="3">Rs. (In words): <span>{{data[4]}}</span></td>
-      </tr>
-      <tr>
-        <td colspan="1">Paid By: <span>{{data[5]}}</span></td>
-        {% if data[5] == "Cheque" %}
-        <td colspan="1">Dated: <span>{{data[6]}}</span></td>
-        <td colspan="1">Bank Name: <span>{{data[7]}}</span></td>
-        {% else %}
-        <td colspan="1">Dated: NA</td>
-        <td colspan="1">Bank Name: NA</td>
-        {% endif %}
-      </tr>
-      <tr class="beingCell">
-        <td colspan="3">Being <span>{{data[-1]}}</span></td>
-      </tr>
-      <tr>
-        <td colspan="1"><div>Prepared By</div></td>
-        <td colspan="1"><div>Authorized By</div></td>
-        <td colspan="1"><div>Reciever's Signature</div></td>
-      </tr>
-    </table>
-
+    
     <div class="voucher-container">
       <div class="voucher-title">OXFORD VILLAGE CONDOMINIUM</div>
 
@@ -66,7 +20,7 @@
 
       <div class="double-col">
         <div class="left">Cash/Bank Voucher</div>
-        <div class="middle">Debit : <span>{{data[1]}}</span></div>
+        <div class="middle">Debit A/c : <span>{{data[1]}}</span></div>
       </div>
 
       <div class="double-col">
@@ -87,7 +41,7 @@
         <div class="triple">Bank Name : <span>{{data[7]}}</span></div>
         {% else %}
         <div class="triple">
-          Paid By <b>Cash</b> <span class="paidByCash"> / Cheque No : NA </span>
+          Paid By : <b>Cash</b> <span class="paidByCash"> / Cheque No : NA </span>
         </div>
         <div class="triple">Dated : <span> NA </span></div>
         <div class="triple">Bank Name : <span> NA </span></div>
@@ -109,7 +63,7 @@
     </div>
 
     <script>
-      //window.print();
+      window.print();
     </script>
   </body>
 </html>

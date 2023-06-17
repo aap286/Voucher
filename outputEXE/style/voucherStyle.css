@@ -1,0 +1,147 @@
+@import url("https://fonts.googleapis.com/css2?family=Emerald+Serif&display=swap");
+
+@media print {
+  #print-button {
+    display: none;
+  }
+
+  #back-button {
+    display: none;
+  }
+
+  span {
+    text-decoration: underline;
+  }
+
+  @page {
+    size: auto;
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+
+  body {
+    margin: 0;
+  }
+
+  ::header,
+  ::footer {
+    display: none;
+  }
+}
+
+html {
+  font-family: "Emerald Serif", serif;
+}
+
+/* ? buttons */
+.buttons {
+  margin-top: 40px;
+  display: flex;
+  gap: 70px;
+  justify-content: center;
+}
+
+button {
+  height: 50px;
+  width: 10%;
+  border-radius: 5px;
+  background-color: #b3c6db;
+  outline: transparent;
+  border: none;
+  color: white;
+  font-size: 20px;
+  transition: 0.5s;
+  font-weight: 545;
+}
+
+/* * voucher style */
+.voucher-container {
+  display: flex;
+  flex-direction: column;
+  width: 800px;
+  margin: 50px auto 0;
+  font-size: 18px;
+  color: #002d62;
+  font-family: "";
+}
+
+.voucher-title,
+.voucher-subtitle,
+.last-row {
+  text-align: center;
+}
+
+.voucher-title {
+  font-size: 25px;
+}
+
+/* horizontal line for partitioning title and body */
+.line {
+  border-bottom: 2px solid #002d62;
+  margin-bottom: 10px;
+}
+
+/* rows for which two rows exists */
+.double-col {
+  display: flex;
+  flex-direction: row;
+}
+
+.double-col .left {
+  width: 70%;
+  text-align: left;
+}
+
+/* adjust height of pay to cell */
+.double-row {
+  min-height: 40px;
+}
+
+.double-col,
+.double-row {
+  margin-bottom: 10px;
+}
+.being {
+  height: 80px;
+}
+
+/* adjusting row with triple columns */
+.double-col .triple:first-child {
+  width: 40%;
+}
+
+.double-col .triple:nth-child(2) {
+  width: 25%;
+}
+
+/* * when paid by cash decrease opacity of cheque */
+.paidByCash {
+  opacity: 0;
+}
+
+.last-row {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+/* top border line for signature destination */
+.last-row .triple {
+  padding-top: 5px;
+  border-top: 2px solid #002d62;
+  width: 150px;
+}
+
+/* * print and back button styles */
+
+button a {
+  text-decoration: none;
+}
+
+button:hover {
+  background-color: #e3edf8;
+  color: #002d62;
+}
+
+button a:visited {
+  color: #002d62;
+}

@@ -17,7 +17,7 @@ cipher = Fernet(key)
 # TODO: opens and reads file
 def extractData(storageArray, filepath, openType, encryption_key=False):
     # Entire file path
-    completeFilepath = "{}/{}".format(os.path.dirname(__file__), filepath)
+    completeFilepath = "{}".format(filepath)
 
     # Open the text file
     textFile = open(completeFilepath, openType)
@@ -41,7 +41,7 @@ def storeEncryptedData(data):
     # encode data
     encryptedData = cipher.encrypt(data.encode())
     # file path
-    file_path = "{}/SecureArchive/encryptedData.txt".format(os.path.dirname(__file__))
+    file_path = "SecureArchive/encryptedData.txt"
     with open(file_path, "ab") as file:
         file.write(encryptedData + b"\n")
 
@@ -64,7 +64,13 @@ extractData(conveyers, "configuration/conveyer.txt", "r")
 # initialize app
 def intializeApp():
     app = Flask(__name__, template_folder="templates", static_folder="style")
-    # window = webview.create_window("Voucher", app, width=1000, height=950)
+    window = webview.create_window("Voucher", app, width=1000, height=950)
+
+    # TODO: Handling error
+    @app.errorhandler(Exception)
+    def handle_error(error):
+        # Custom error handling logic
+        return render_template("error.html")
 
     # TODO: Displays form
     @app.route("/", methods=["GET"])
@@ -84,7 +90,7 @@ def intializeApp():
         extractData(decryptedData, "SecureArchive/encryptedData.txt", "rb", True)
 
         # ! check previous encrypted number
-        print("List of all encrypted numbers \n {}".format(decryptedData))
+        # print("List of all encrypted numbers \n {}".format(decryptedData))
 
         # if encrytion data is empty
         num = (
@@ -116,11 +122,21 @@ def intializeApp():
         userStorage.append(request.form.get("conveyer"))
         userStorage.append(request.form.get("Being"))
 
+        # adds information to database
+        userString = ""  # empty string to hold user information
+        for info in userStorage:
+            userString = userString + str(info) + "\t"
+
+        # storing string in database
+        file_path_db = "database/dataRepository.txt"
+        with open(file_path_db, "a") as file:
+            file.write(userString + "\n")
+
         return render_template("voucher.html", data=userStorage)
 
     if __name__ == "__main__":
-        app.run(debug=True)
-        # webview.start()
+        # app.run(debug=True)
+        webview.start()
 
 
 # ! runs app

@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Emerald+Serif&display=swap");
+
 @media print {
   #print-button {
     display: none;
@@ -7,79 +9,28 @@
     display: none;
   }
 
-  table {
-    border: solid #002d62 !important;
-    border-width: 1px 0 0 1px !important;
+  span {
+    text-decoration: underline;
   }
-  th,
-  td {
-    border: solid #002d62 !important;
-    border-width: 0 1px 1px 0 !important;
+
+  @page {
+    size: auto;
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+
+  body {
+    margin: 0;
+  }
+
+  ::header,
+  ::footer {
+    display: none;
   }
 }
 
-table {
-  /* background-color:  #6CB4EE; */
-  background-color: #b3c6db;
-  margin-left: auto;
-  margin-right: auto;
-  margin-top: 5%;
-  border-collapse: collapse;
-  font-size: 16px;
-  color: #002d62;
-  font-family: "HelveticaNeue";
-  box-sizing: border-box;
-}
-
-th,
-td {
-  border: 2px solid white;
-  padding: 10px;
-}
-
-td {
-  background-color: #e3edf8;
-}
-.header th {
-  font-size: 22px;
-  /* background-color: #002D62; */
-}
-
-/* ? underlines */
-span {
-  text-decoration: underline;
-}
-
-.biggerCols {
-  width: 50%;
-}
-
-.smallerCols {
-  width: 70%;
-}
-
-.Subheading {
-  text-align: center;
-  font-size: 20px;
-}
-
-.payCell {
-  height: 50px;
-  vertical-align: top;
-}
-
-.beingCell {
-  height: 100px;
-  vertical-align: top;
-}
-
-tr:last-child td {
-  padding-top: 40px;
-}
-
-tr:last-child td div {
-  padding-top: 10px;
-  border-top: 2px solid #002d62;
+html {
+  font-family: "Emerald Serif", serif;
 }
 
 /* ? buttons */
@@ -94,12 +45,11 @@ button {
   height: 50px;
   width: 10%;
   border-radius: 5px;
-  background-color: #e3edf8;
+  background-color: #b3c6db;
   outline: transparent;
   border: none;
-  color: #002d62;
+  color: white;
   font-size: 20px;
-  font-family: "HelveticaNeue";
   transition: 0.5s;
   font-weight: 545;
 }
@@ -109,11 +59,11 @@ button {
   display: flex;
   flex-direction: column;
   width: 800px;
-  margin: 0px auto;
+  margin: 50px auto 0;
   font-size: 18px;
-  color:#002d62;
+  color: #002d62;
+  font-family: "";
 }
-
 
 .voucher-title,
 .voucher-subtitle,
@@ -127,7 +77,8 @@ button {
 
 /* horizontal line for partitioning title and body */
 .line {
-  border-bottom: 1px solid #002d62; /* Replace 'black' with the desired color */
+  border-bottom: 2px solid #002d62;
+  margin-bottom: 10px;
 }
 
 /* rows for which two rows exists */
@@ -165,7 +116,7 @@ button {
 
 /* * when paid by cash decrease opacity of cheque */
 .paidByCash {
-  opacity: 0.7;
+  opacity: 0;
 }
 
 .last-row {
@@ -187,7 +138,8 @@ button a {
 }
 
 button:hover {
-  background-color: #b3c6db;
+  background-color: #e3edf8;
+  color: #002d62;
 }
 
 button a:visited {
