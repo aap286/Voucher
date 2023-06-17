@@ -82,8 +82,6 @@ tr:last-child td div {
   border-top: 2px solid #002d62;
 }
 
-
-
 /* ? buttons */
 .buttons {
   margin-top: 40px;
@@ -91,7 +89,6 @@ tr:last-child td div {
   gap: 70px;
   justify-content: center;
 }
-
 
 button {
   height: 50px;
@@ -106,6 +103,84 @@ button {
   transition: 0.5s;
   font-weight: 545;
 }
+
+/* * voucher style */
+.voucher-container {
+  display: flex;
+  flex-direction: column;
+  width: 800px;
+  margin: 0px auto;
+  font-size: 18px;
+  color:#002d62;
+}
+
+
+.voucher-title,
+.voucher-subtitle,
+.last-row {
+  text-align: center;
+}
+
+.voucher-title {
+  font-size: 25px;
+}
+
+/* horizontal line for partitioning title and body */
+.line {
+  border-bottom: 1px solid #002d62; /* Replace 'black' with the desired color */
+}
+
+/* rows for which two rows exists */
+.double-col {
+  display: flex;
+  flex-direction: row;
+}
+
+.double-col .left {
+  width: 70%;
+  text-align: left;
+}
+
+/* adjust height of pay to cell */
+.double-row {
+  min-height: 40px;
+}
+
+.double-col,
+.double-row {
+  margin-bottom: 10px;
+}
+.being {
+  height: 80px;
+}
+
+/* adjusting row with triple columns */
+.double-col .triple:first-child {
+  width: 40%;
+}
+
+.double-col .triple:nth-child(2) {
+  width: 25%;
+}
+
+/* * when paid by cash decrease opacity of cheque */
+.paidByCash {
+  opacity: 0.7;
+}
+
+.last-row {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+/* top border line for signature destination */
+.last-row .triple {
+  padding-top: 5px;
+  border-top: 2px solid #002d62;
+  width: 150px;
+}
+
+/* * print and back button styles */
 
 button a {
   text-decoration: none;

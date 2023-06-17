@@ -56,22 +56,24 @@ extractData(debitDropdownValue, "configuration/debits.txt", "r")
 bankNames = []
 extractData(bankNames, "configuration/bankNames.txt", "r")
 
-# number = 1000405060
-# number_in_words = num2words(number)
-
-# print(number_in_words)
+# ? store conveyers
+conveyers = []
+extractData(conveyers, "configuration/conveyer.txt", "r")
 
 
 # initialize app
 def intializeApp():
     app = Flask(__name__, template_folder="templates", static_folder="style")
-    window = webview.create_window("Voucher", app, width=1000, height=950)
+    # window = webview.create_window("Voucher", app, width=1000, height=950)
 
     # TODO: Displays form
     @app.route("/", methods=["GET"])
     def form():
         return render_template(
-            "form.html", debitDropdown=debitDropdownValue, bankNames=bankNames
+            "form.html",
+            debitDropdown=debitDropdownValue,
+            bankNames=bankNames,
+            conveyers=conveyers,
         )
 
     #  TODO: Displays on submission
@@ -101,21 +103,24 @@ def intializeApp():
         userStorage.append(request.form.get("Date"))
         userStorage.append(request.form.get("Pay"))
         userStorage.append(
-            num2words(request.form.get("Price"), lang="en_IN", to="cardinal"))
+            num2words(request.form.get("Price"), lang="en_IN", to="cardinal")
+        )
         userStorage.append(request.form.get("paymentType"))
 
         # checks payment type
         if userStorage[-1] == "Cheque":
             userStorage.append(request.form.get("Dated"))
             userStorage.append(request.form.get("bankName"))
+            userStorage.append(request.form.get("chequeNo"))
 
+        userStorage.append(request.form.get("conveyer"))
         userStorage.append(request.form.get("Being"))
 
         return render_template("voucher.html", data=userStorage)
 
     if __name__ == "__main__":
-        # app.run(debug=True)
-        webview.start()
+        app.run(debug=True)
+        # webview.start()
 
 
 # ! runs app

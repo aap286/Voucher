@@ -18,7 +18,6 @@
 
     <!-- Include jQuery UI Datepicker JavaScript -->
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-
   </head>
   <body>
     <div class="formContainer">
@@ -27,12 +26,11 @@
         <div class="InputContainer">
           <!--<label for="Debit"> Debit </label>-->
           <select type="text" id="debit" name="Debit" required>
-            
             {% for debitValue in debitDropdown %}
             <option value="{{debitValue}}">{{debitValue}}</option>
             {% endfor %}
           </select>
-          <label for="debit">Debit</label>
+          <label for="debit">Debit A/c</label>
         </div>
 
         <div class="InputContainer">
@@ -57,30 +55,49 @@
         </div>
 
         <div class="InputContainer">
-        <select id="paymentType" name="paymentType" required>
-          <option value="Cash">Cash</option>
-          <option value="Cheque">Cheque</option>
-        </select>
-         <label for="paymentType">Paid by Cash/Cheque</label>
-      </div>
-
-        <section id="chequeContainer">
-        <div class="InputContainer" id="datedContainer">
-          <input type="text" id="dated" name="Dated" required />
-          <label for="dated">Dated</label>
-          
+          <select id="paymentType" name="paymentType" required>
+            <option value="Cash">Cash</option>
+            <option value="Cheque">Cheque</option>
+            <option value="NEFT/RTGS">NEFT/RTGS</option>
+          </select>
+          <label for="paymentType">Paid by Cash/Cheque</label>
         </div>
 
-        <div class="InputContainer" id="datedContainer">
-          
-          <select type="text" id="bankName" name="bankName" required>
-            {% for name in bankNames %}
+        <section id="chequeContainer">
+          <div class="InputContainer">
+            <input type="text" id="dated" name="Dated" required />
+            <label for="dated">Dated</label>
+          </div>
+
+          <div class="InputContainer">
+            <select type="text" id="bankName" name="bankName" required>
+              {% for name in bankNames %}
+              <option value="{{name}}">{{name}}</option>
+              {% endfor %}
+            </select>
+            <label for="Bank">Bank Name</label>
+          </div>
+
+          <div class="InputContainer">
+            <input
+              type="text"
+              pattern="[0-9]+"
+              id="chequeNo"
+              name="chequeNo"
+              required
+            />
+            <label for="chequeNo">Cheque Number</label>
+          </div>
+        </section>
+
+        <div class="InputContainer">
+          <select type="text" id="conveyer" name="conveyer" required>
+            {% for name in conveyers %}
             <option value="{{name}}">{{name}}</option>
             {% endfor %}
           </select>
-          <label for="Bank"> Bank Name </label>
+          <label for="conveyer">Conveyer</label>
         </div>
-      </section>
 
         <div class="InputContainer">
           <textarea
@@ -90,10 +107,9 @@
             cols="50"
             required
           ></textarea>
-          <label for="Being" placeholder="Being"> Being </label>
+          <label for="Being" placeholder="Being">Being</label>
         </div>
 
-        
         <div class="a">
           <span></span>
           <span></span>
@@ -121,27 +137,22 @@
     <script>
       window.addEventListener("load", function () {
         var chequeContainer = document.getElementById("chequeContainer");
-        var datedContainers = document.querySelectorAll("#datedContainer");
-        var paymentTypeSelect = document.getElementById("paymentType");
+        var paymentTypeSelect = document.getElementById("paymentType"); 
         var dated = document.getElementById("dated");
         var bankName = document.getElementById("bankName");
+        var chequeNo = document.getElementById("chequeNo");
 
         function updatePaymentType() {
           if (paymentTypeSelect.value === "Cheque") {
-            // datedContainers.forEach(function (container) {
-            //   container.style.display = "block";
-
-            //});
-            chequeContainer.style.display = "block";
+            chequeContainer.style.display = "inline";
             dated.required = true;
             bankName.required = true;
+            chequeNo.required = true;
           } else {
-            //datedContainers.forEach(function (container) {
-            // container.style.display = "none";
-            //});
             chequeContainer.style.display = "none";
             dated.required = false;
             bankName.required = false;
+            chequeNo.required = false;
           }
         }
 
@@ -155,8 +166,16 @@
 
     <script>
       var inputElement = document.getElementById("price");
-
       inputElement.addEventListener("input", function () {
+        if (this.value.length > 0) {
+          this.classList.add("has-input");
+        } else {
+          this.classList.remove("has-input");
+        }
+      });
+
+      var inputChenumber = document.getElementById("chequeNo");
+      inputChenumber.addEventListener("input", function () {
         if (this.value.length > 0) {
           this.classList.add("has-input");
         } else {

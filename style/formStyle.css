@@ -3,7 +3,7 @@
   padding: 0;
   outline: transparent;
   box-sizing: border-box;
-  font-family: 'HelveticaNeue','Arial', sans-serif; /*"Roboto Slab";*/
+  font-family: "HelveticaNeue", "Arial", sans-serif; /*"Roboto Slab";*/
 }
 
 html {
@@ -15,11 +15,12 @@ body {
 }
 
 .formContainer {
+  user-select: none;
   position: absolute;
   top: 50%;
   left: 50%;
   width: 400px;
-  padding: 40px;
+  padding: 15px 40px;
   transform: translate(-50%, -50%);
   background: rgba(0, 0, 0, 0.5);
   box-sizing: border-box;
@@ -50,39 +51,42 @@ form {
   vertical-align: bottom;
 }
 
-
 .InputContainer {
   position: relative;
 }
 
-
 /* ! dropdown menu */
 .InputContainer select option {
-    background-color:#243b55;
+  background-color: #243b55;
 }
-
-
 
 .InputContainer input,
 .InputContainer textarea,
-.InputContainer select  {
+.InputContainer select {
   width: 100%;
   padding: 10px 0;
   font-size: 16px;
   color: #ffffff;
-  margin-bottom: 30px;
+  margin-bottom: 28px;
   border: none;
   border-bottom: 1px solid #fff;
   outline: none;
   background: transparent;
+  cursor: pointer;
+}
+
+.InputContainer option,
+.a input {
+  cursor: pointer;
 }
 
 .InputContainer select option:hover {
-    color: #03e9f4;
+  color: #03e9f4;
 }
-/* .InputContainer textarea {
-    margin-top: 30px;
-} */
+
+.InputContainer textarea {
+  resize: none;
+}
 
 .InputContainer label {
   position: absolute;
@@ -108,34 +112,30 @@ form {
 }
 
 .InputContainer .has-input:invalid ~ label {
-    top: -20px;
+  top: -20px;
   left: 0;
-  color:  #dc2f55;
+  color: #dc2f55;
   font-size: 12px;
 }
 
-
-
-
-
 /* submit button */
 .formContainer form .Submit-Btn {
-    background-color: transparent !important;
-    color:#fff;
-    outline: transparent !important;
-    border: transparent !important;
+  background-color: transparent !important;
+  color: #fff;
+  outline: transparent !important;
+  border: transparent !important;
 }
 
-  .a input.Submit-Btn {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    display: block;
-    font-size: 16px;
-    /* padding: 10px 0; */
-  }
+.a input.Submit-Btn {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+  font-size: 16px;
+  /* padding: 10px 0; */
+}
 
 .formContainer form .a {
   position: relative;
@@ -148,7 +148,7 @@ form {
   text-transform: uppercase;
   overflow: hidden;
   transition: 0.5s;
-  margin-top: 40px;
+  margin-top: 10px;
   letter-spacing: 4px;
 }
 
