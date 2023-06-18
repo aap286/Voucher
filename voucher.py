@@ -1,8 +1,9 @@
 # required dependencies
 from flask import Flask, render_template, request
+import os, locale, webview, csv, win32con, win32api
 from cryptography.fernet import Fernet
 from num2words import num2words
-import os, locale, webview, csv
+
 
 # ? key
 key = b"zjjUTUFB3ONwdx3iD8rbOEj9DrC-Mw0Hfihg0EUkl3U="
@@ -45,9 +46,8 @@ def extractData(storageArray, filepath, openType, encryption_key=False):
 def storeEncryptedData(data):
     # encode data
     encryptedData = cipher.encrypt(data.encode())
-    # file path
-    file_path = "SecureArchive/encryptedData.trouve"
-    with open(file_path, "wb") as file:
+    
+    with open(encrypt_file_path, "wb") as file:
         file.write(encryptedData + b"\n")
 
 
@@ -74,13 +74,20 @@ def createFolder(foldername, files):
 
 
 # ! create folders and files just in case
-configuration = ["bankNames.txt", "conveyer.txt", "debits.txt"]
+configuration = ["debits.txt", "bankNames.txt", "conveyer.txt"]
 database = ["dataRepository.txt"]
-SecureArchive = ["encryptedData.trouve"]
+SecureArchive = ["encryptedData.txt"]
 
 createFolder("configuration", configuration)
 createFolder("database", database)
 createFolder("SecureArchive", SecureArchive)
+
+# ! file paths
+encrypt_file_path = "SecureArchive/{}".format(SecureArchive)
+configuration_file_path = ["configuration/{}".format(filename) for filename in configuration]
+file_path_db = "database/{}".format(database[0])
+    
+win32api.SetFileAttributes(file,win32con.FILE_ATTRIBUTE_HIDDEN)
 
 # ! setup
 
@@ -94,16 +101,16 @@ bankNames = [
 ]
 conveyers = ["Iternary 1", "Iternary 2", "Iternary 3"]
 
-extractData(debiteAccounts, "configuration/debits.txt", "r")
-extractData(bankNames, "configuration/bankNames.txt", "r")
-extractData(conveyers, "configuration/conveyer.txt", "r")
+extractData(debiteAccounts, configuration_file_path[0], "r")
+extractData(bankNames, configuration_file_path[1], "r")
+extractData(conveyers, configuration_file_path[2], "r")
 
 # ? column names for database
-database_filepath = "database/{}".format(database[0])
-if os.path.getsize(database_filepath) == 0:
+if os.path.getsize(file_path_db) == 0:
     colnames = "No\t Debit A/c\t  Date\t Pay to\t Rs. (In digits)\t Rs. (In words)\t Payment type\t Cheque Number\t Dated\t Bank Name\t Conveyer\t Being"
-    with open(database_filepath, "w") as file:
+    with open(file_path_db, "w") as file:
         file.write(colnames + "\n")
+
 
 # initialize app
 def intializeApp():
@@ -132,7 +139,7 @@ def intializeApp():
     def submission():
         # * get the latest encrypted number
         decryptedData = []
-        extractData(decryptedData, "SecureArchive/encryptedData.trouve", "rb", True)
+        extractData(decryptedData, encrypt_file_path, "rb", True)
 
         # if encrytion data is empty
         num = (
@@ -169,9 +176,7 @@ def intializeApp():
 
         # * add information to encryption file
         storeEncryptedData(str(userStorage[0]))
-    
-        # storing string in database
-        file_path_db = "database/dataRepository.txt"
+
         with open(file_path_db, "a", newline="") as file:
             writer = csv.writer(file, delimiter="\t")
             writer.writerows([userStorage])
@@ -179,9 +184,12 @@ def intializeApp():
         return render_template("voucher.html", data=userStorage)
 
     if __name__ == "__main__":
-        app.run(debug=False)
-        # webview.start()
+        # app.run(debug=False)
+        webview.start()
 
 
 # ! runs app
 intializeApp()
+
+
+

@@ -62,3 +62,4 @@ No	 Debit A/c	  Date	 Pay to	 Rs. (In digits)	 Rs. (In words)	 Payment type	 Che
 1000058	Plan 1	07/06/2023	r34	443	four hundred and forty-three	Cash	-	-	-	Iternary 1	434
 1000059	Plan 1	07/06/2023	r34	443	four hundred and forty-three	Cash	-	-	-	Iternary 1	434
 1000060	Plan 1	07/06/2023	r34	443	four hundred and forty-three	Cash	-	-	-	Iternary 1	434
+1000061	Plan 1	01/06/2023	2332	32	thirty-two	Cash	-	-	-	Iternary 1	3232
