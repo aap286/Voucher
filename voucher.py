@@ -1,13 +1,15 @@
 # required dependencies
 from flask import Flask, render_template, request
-import os
 from cryptography.fernet import Fernet
 from num2words import num2words
-import webview
+import os, locale, webview, csv
 
 # ? key
 key = b"zjjUTUFB3ONwdx3iD8rbOEj9DrC-Mw0Hfihg0EUkl3U="
 cipher = Fernet(key)
+
+# ? Set the desired locale for India
+locale.setlocale(locale.LC_ALL, "en_IN")
 
 # ! function
 
@@ -44,8 +46,8 @@ def storeEncryptedData(data):
     # encode data
     encryptedData = cipher.encrypt(data.encode())
     # file path
-    file_path = "SecureArchive/encryptedData.txt"
-    with open(file_path, "ab") as file:
+    file_path = "SecureArchive/encryptedData.trouve"
+    with open(file_path, "wb") as file:
         file.write(encryptedData + b"\n")
 
 
@@ -57,7 +59,7 @@ def createFolder(foldername, files):
         os.makedirs(foldername)
 
         for filename in files:
-            filepath = os.path.join(foldername, f"{filename}.txt")
+            filepath = os.path.join(foldername, f"{filename}")
 
             # Check if the file exists
             if not os.path.exists(filepath):
@@ -72,9 +74,9 @@ def createFolder(foldername, files):
 
 
 # ! create folders and files just in case
-configuration = ["bankNames", "conveyer", "debits"]
-database = ["dataRepository"]
-SecureArchive = ["encryptedData"]
+configuration = ["bankNames.txt", "conveyer.txt", "debits.txt"]
+database = ["dataRepository.txt"]
+SecureArchive = ["encryptedData.trouve"]
 
 createFolder("configuration", configuration)
 createFolder("database", database)
@@ -83,18 +85,31 @@ createFolder("SecureArchive", SecureArchive)
 # ! setup
 
 # ? retrieve value for dropdown
-debiteAccounts = ["item1", "item2", "item3"]
-bankNames = ["Axis Bank", "Bank of India", "HDFC Bank", "ICIC Bank"]
-conveyers = ["iternary1", "iternary2", "iternary3"]
+debiteAccounts = ["Plan 1", "Plan 2", "Plan 3"]
+bankNames = [
+    "JPMorgan Chase Bank",
+    "Bank of America",
+    "Citibank",
+    "PNC Bank",
+]
+conveyers = ["Iternary 1", "Iternary 2", "Iternary 3"]
 
 extractData(debiteAccounts, "configuration/debits.txt", "r")
 extractData(bankNames, "configuration/bankNames.txt", "r")
 extractData(conveyers, "configuration/conveyer.txt", "r")
 
+# ? column names for database
+database_filepath = "database/{}".format(database[0])
+if os.path.getsize(database_filepath) == 0:
+    colnames = "No\t Debit A/c\t  Date\t Pay to\t Rs. (In digits)\t Rs. (In words)\t Payment type\t Cheque Number\t Dated\t Bank Name\t Conveyer\t Being"
+    with open(database_filepath, "w") as file:
+        file.write(colnames + "\n")
 
 # initialize app
 def intializeApp():
-    app = Flask(__name__, template_folder="templates", static_folder="style")
+    app = Flask(
+        __name__, template_folder="assets/templates", static_folder="assets/style"
+    )
     window = webview.create_window("Voucher", app, width=1000, height=950)
 
     # TODO: Handling error
@@ -117,28 +132,23 @@ def intializeApp():
     def submission():
         # * get the latest encrypted number
         decryptedData = []
-        extractData(decryptedData, "SecureArchive/encryptedData.txt", "rb", True)
-
-        # ! check previous encrypted number
-        # print("List of all encrypted numbers \n {}".format(decryptedData))
+        extractData(decryptedData, "SecureArchive/encryptedData.trouve", "rb", True)
 
         # if encrytion data is empty
         num = (
             lambda decryptedData: int(decryptedData[-1])
             if len(decryptedData) != 0
-            else 999
+            else 999999
         )(decryptedData)
 
         # * resets user data
         userStorage = [num + 1]
 
-        # * add information to encryption file
-        storeEncryptedData(str(userStorage[-1]))
-
         userStorage.append(request.form.get("Debit"))
         userStorage.append(request.form.get("Date"))
         userStorage.append(request.form.get("Pay"))
-        userStorage.append(request.form.get("Price"))
+        number = int(request.form.get("Price"))
+        userStorage.append(str(locale.format_string("%d", number, grouping=True)))
         userStorage.append(
             num2words(request.form.get("Price"), lang="en_IN", to="cardinal")
         )
@@ -146,27 +156,30 @@ def intializeApp():
 
         # checks payment type
         if userStorage[-1] == "Cheque":
+            userStorage.append(request.form.get("chequeNo"))
             userStorage.append(request.form.get("Dated"))
             userStorage.append(request.form.get("bankName"))
-            userStorage.append(request.form.get("chequeNo"))
+        else:
+            userStorage.append("-")
+            userStorage.append("-")
+            userStorage.append("-")
 
         userStorage.append(request.form.get("conveyer"))
         userStorage.append(request.form.get("Being"))
 
-        # adds information to database
-        userString = ""
-        for info in userStorage:
-            userString = userString + str(info) + "\t"
-
+        # * add information to encryption file
+        storeEncryptedData(str(userStorage[0]))
+    
         # storing string in database
         file_path_db = "database/dataRepository.txt"
-        with open(file_path_db, "a") as file:
-            file.write(userString + "\n")
+        with open(file_path_db, "a", newline="") as file:
+            writer = csv.writer(file, delimiter="\t")
+            writer.writerows([userStorage])
 
         return render_template("voucher.html", data=userStorage)
 
     if __name__ == "__main__":
-        app.run(debug=True)
+        app.run(debug=False)
         # webview.start()
 
 

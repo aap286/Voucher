@@ -8,7 +8,6 @@
     />
   </head>
   <body>
-    
     <div class="voucher-container">
       <div class="voucher-title">OXFORD VILLAGE CONDOMINIUM</div>
 
@@ -26,7 +25,7 @@
       <div class="double-col">
         <div class="triple">No : <span>{{data[0]}}</span></div>
         <div class="triple">Rs. (In digits) : <span>{{data[4]}}</span></div>
-        <div class="triple">Debit : <span>{{data[2]}}</span></div>
+        <div class="triple">Date : <span>{{data[2]}}</span></div>
       </div>
 
       <div class="double-row">Pay To : <span>{{data[3]}}</span></div>
@@ -35,15 +34,11 @@
 
       <div class="double-col">
         {% if data[6] == "Cheque" %}
-        <div class="triple">
-          Paid By Cheque No : <span>{{data[9]}}</span>
-        </div>
+        <div class="triple">Paid By Cheque No : <span>{{data[9]}}</span></div>
         <div class="triple">Dated : <span>{{data[7]}}</span></div>
         <div class="triple">Bank Name : <span>{{data[8]}}</span></div>
         {% else %}
-        <div class="triple">
-          Paid By : <b>Cash</b> <span class="paidByCash"> / Cheque No : NA </span>
-        </div>
+        <div class="triple">Paid By : <b>Cash</b></div>
         <div class="triple">Dated : <span> NA </span></div>
         <div class="triple">Bank Name : <span> NA </span></div>
         {% endif %}
@@ -51,12 +46,14 @@
 
       <div class="being">Being : <span>{{data[-1]}}</span></div>
 
-      <div class=" last-row">
+      <div class="last-row">
         <div class="triple">Prepared By</div>
+        <div class="vertical-line"></div>
         <div class="triple">President</div>
         <div class="triple">Treasurer</div>
         <div class="triple">Secretary</div>
-        <div class="triple">{{data[-2]}} </div>
+        <div class="triple">{{data[-2]}}</div>
+        <div class="vertical-line"></div>
         <div class="triple">Reciever's Signature</div>
       </div>
     </div>

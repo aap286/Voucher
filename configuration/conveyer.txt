@@ -1,3 +1,0 @@
-iternary 1
-iternary 2
-iternary 3
