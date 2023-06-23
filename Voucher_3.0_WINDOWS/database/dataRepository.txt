@@ -1,2 +1,0 @@
-No	 Debit A/c	  Date	 Pay to	 Rs. (In digits)	 Rs. (In words)	 Payment type	 Cheque Number	 Dated	 Bank Name	 Conveyer	 Being
-1000000	Plan 1	01/06/2023	l	90	ninety	Cash	-	-	-	Iternary 1	rer

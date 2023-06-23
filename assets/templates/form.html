@@ -23,8 +23,10 @@
     <div class="formContainer">
       <h1>Cash/Bank Voucher</h1>
       <form method="POST" action="/submission">
+        
+       <div class="couple">
+         
         <div class="InputContainer">
-          <!--<label for="Debit"> Debit </label>-->
           <select type="text" id="debit" name="Debit" required>
             {% for debitValue in debitDropdown %}
             <option value="{{debitValue}}">{{debitValue}}</option>
@@ -35,20 +37,30 @@
 
         <div class="InputContainer">
           <input
-            type="text"
+            type="date"
             id="date"
             name="Date"
             required
             autocomplete="off"
           />
-          <label for="date">Date</label>
+          <label for="date" onclick="openCalendar()">Date</label>
         </div>
+      </div>
 
         <div class="InputContainer">
           <input type="text" id="pay" name="Pay" required autocomplete="off" />
           <label for="Pay"> Pay To </label>
         </div>
 
+        <div class='couple'>
+          <div class="InputContainer">
+          <select id="paymentType" name="paymentType" required>
+            <option value="Cash">Cash</option>
+            <option value="Cheque">Cheque</option>
+            <option value="NEFT/RTGS">NEFT/RTGS</option>
+          </select>
+          <label for="paymentType">Paid by Cash/Cheque</label>
+        </div>
         <div class="InputContainer">
           <input
             type="text"
@@ -60,29 +72,11 @@
           />
           <label for="price"> Rs. (In digits) </label>
         </div>
-
-        <div class="InputContainer">
-          <select id="paymentType" name="paymentType" required>
-            <option value="Cash">Cash</option>
-            <option value="Cheque">Cheque</option>
-            <option value="NEFT/RTGS">NEFT/RTGS</option>
-          </select>
-          <label for="paymentType">Paid by Cash/Cheque</label>
-        </div>
+      </div>
 
         <section id="chequeContainer">
-          <div class="InputContainer">
-            <input
-              type="text"
-              id="dated"
-              name="Dated"
-              required
-              autocomplete="off"
-            />
-            <label for="dated">Dated</label>
-          </div>
 
-          <div class="InputContainer">
+           <div class="InputContainer">
             <select type="text" id="bankName" name="bankName" required>
               {% for name in bankNames %}
               <option value="{{name}}">{{name}}</option>
@@ -91,7 +85,8 @@
             <label for="Bank">Bank Name</label>
           </div>
 
-          <div class="InputContainer">
+          <div class="couple">
+                      <div class="InputContainer">
             <input
               type="text"
               pattern="[0-9]+"
@@ -102,6 +97,17 @@
             />
             <label for="chequeNo">Cheque Number</label>
           </div>
+
+          <div class="InputContainer">
+              <input
+                type="date"
+                id="dated"
+                name="Dated"
+                required
+                autocomplete="off"
+              />
+            <label for="dated">Dated</label>
+            </div>
         </section>
 
         <div class="InputContainer">
@@ -110,7 +116,7 @@
             <option value="{{name}}">{{name}}</option>
             {% endfor %}
           </select>
-          <label for="conveyer">Conveyer</label>
+          <label for="conveyer">Convener</label>
         </div>
 
         <div class="InputContainer">
@@ -136,20 +142,6 @@
     </div>
 
     <script>
-      $(function () {
-        // Initialize the datepicker
-        $("#date").datepicker({
-          dateFormat: "dd/mm/yy",
-          defaultDate: 0,
-        });
-
-        $("#dated").datepicker({
-          dateFormat: "dd/mm/yy",
-        });
-      });
-    </script>
-
-    <script>
       window.addEventListener("load", function () {
         var chequeContainer = document.getElementById("chequeContainer");
         var paymentTypeSelect = document.getElementById("paymentType");
@@ -160,18 +152,27 @@
         function updatePaymentType() {
           if (paymentTypeSelect.value === "Cheque") {
             chequeContainer.style.display = "inline";
+            chequeContainer.style.opacity = 0; 
             dated.required = true;
             bankName.required = true;
             chequeNo.required = true;
-          } else {
-            chequeContainer.style.display = "none";
-            dated.required = false;
-            bankName.required = false;
-            chequeNo.required = false;
-          }
-        }
 
-        // Call the updatePaymentType function initially
+            // Trigger a reflow (force a repaint)
+            void chequeContainer.offsetWidth;
+
+            chequeContainer.style.opacity = 1;
+            chequeContainer.style.transition = "opacity 0.5s ease";
+          } else {
+              chequeContainer.style.opacity = 0; // Gradually decrease opacity to 0
+              chequeContainer.style.transition = "opacity 0.3s ease";
+              setTimeout(function() {
+                chequeContainer.style.display = "none";
+                dated.required = false;
+                bankName.required = false;
+                chequeNo.required = false;
+              }, 300); // Delay the removal of the element after the transition duration (2s)
+            }
+        }
         updatePaymentType();
 
         // Add change event listener to paymentTypeSelect
@@ -197,6 +198,10 @@
           this.classList.remove("has-input");
         }
       });
+
+      function openCalendar() {
+        document.getElementById("date").click();
+      }
     </script>
   </body>
 </html>

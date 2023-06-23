@@ -1,11 +1,9 @@
-/* @import url("https://fonts.googleapis.com/css2?family=Emerald+Serif&display=swap"); */
-
 * {
   margin: 0;
   padding: 0;
   outline: transparent;
   box-sizing: border-box;
-  font-family: "Emerald Serif", serif;
+  font-family: serif;
 }
 
 html {
@@ -22,7 +20,7 @@ body {
   position: absolute;
   top: 50%;
   left: 50%;
-  width: 400px;
+  /* width: 400px; */
   padding: 15px 40px;
   transform: translate(-50%, -50%);
   background: rgba(0, 0, 0, 0.5);
@@ -30,6 +28,25 @@ body {
   box-shadow: 0 15px 25px rgba(0, 0, 0, 0.6);
   border-radius: 10px;
 }
+
+.couple {
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+  /* justify-content: baseline; */
+  /* align-items: center; */
+}
+
+.couple .InputContainer select {
+  height: 45px;
+  width: 200px;
+}
+
+.couple .InputContainer input {
+  height: 45px;
+  width: 200px;
+}
+
 
 h1 {
   margin: 0 0 30px;
@@ -51,7 +68,7 @@ form {
   /* background-color: darkgoldenrod; */
   /* height: 50px; */
   text-align: center;
-  vertical-align: bottom;
+  /* vertical-align: bottom; */
 }
 
 .InputContainer {
@@ -88,6 +105,7 @@ form {
 }
 
 .InputContainer textarea {
+  height: 150px;
   resize: none;
 }
 
@@ -119,6 +137,12 @@ form {
   left: 0;
   color: #dc2f55;
   font-size: 12px;
+}
+
+/* cheque container */
+.chequeContainer {
+  background-color: #dc2f55;
+  position: absolute;
 }
 
 /* submit button */
@@ -245,4 +269,53 @@ form {
   100% {
     bottom: 100%;
   }
+}
+
+/* * for calender */
+input[type="date"]:required:invalid::-webkit-datetime-edit {
+  color: transparent;
+}
+input[type="date"]:focus::-webkit-datetime-edit {
+  color: white !important;
+}
+
+
+input {
+  color-scheme: dark;
+}
+
+input[type="date"]::-webkit-calendar-picker-indicator {
+  /* background: transparent; */
+  padding: 0;
+  width: 24px;
+  height: 24px;
+  opacity: 1;
+  cursor: pointer;
+}
+
+input[type="date"]::-webkit-datetime-edit {
+  padding: 0;
+  color: #fff;
+}
+
+input[type="date"]::-webkit-inner-spin-button,
+input[type="date"]::-webkit-outer-spin-button {
+  appearance: none;
+  margin: 0;
+}
+
+input[type="date"]::-webkit-datetime-edit-fields-wrapper {
+  display: flex;
+  /* gap: 0.4em; */
+}
+
+input[type="date"]::-webkit-datetime-edit-text {
+  flex: 1;
+}
+
+input[type="date"]::-webkit-datetime-edit-month-field,
+input[type="date"]::-webkit-datetime-edit-day-field,
+input[type="date"]::-webkit-datetime-edit-year-field {
+  flex: 1;
+  min-width: 0;
 }

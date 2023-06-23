@@ -3,6 +3,7 @@ from flask import Flask, render_template, request
 import os, locale, webview, csv, win32con, win32api
 from cryptography.fernet import Fernet
 from num2words import num2words
+from datetime import date, datetime
 
 
 # ? key
@@ -43,11 +44,11 @@ def extractData(storageArray, filepath, openType, encryption_key=False):
 
 
 # TODO: stores encrypted data
-def storeEncryptedData(data):
+def storeEncryptedData(data, file_path):
     # encode data
     encryptedData = cipher.encrypt(data.encode())
-    
-    with open(encrypt_file_path, "wb") as file:
+
+    with open(file_path, "wb") as file:
         file.write(encryptedData + b"\n")
 
 
@@ -71,23 +72,35 @@ def createFolder(foldername, files):
 
     else:
         print(f"Folder '{foldername}' already exists. Skipping folder creation.")
+        
+#  TODO: returns the year range
+def print_year_range(date):
+    month = date.month
+    year = date.year
+
+    if month < 4:
+        year -= 1
+
+    return "/{}-{}".format(year, str(year + 1)[-2:])
 
 
 # ! create folders and files just in case
 configuration = ["debits.txt", "bankNames.txt", "conveyer.txt"]
 database = ["dataRepository.txt"]
-SecureArchive = ["encryptedData.txt"]
+SecureArchive = ["CashEncryptedData.txt", "ChequeEncryptedData.txt"]
 
 createFolder("configuration", configuration)
 createFolder("database", database)
 createFolder("SecureArchive", SecureArchive)
 
 # ! file paths
-encrypt_file_path = "SecureArchive/{}".format(SecureArchive)
-configuration_file_path = ["configuration/{}".format(filename) for filename in configuration]
+cash_encrypt_file_path = "SecureArchive/{}".format(SecureArchive[0])
+cheque_encrypt_file_path = "SecureArchive/{}".format(SecureArchive[1])
+configuration_file_path = [
+    "configuration/{}".format(filename) for filename in configuration
+]
 file_path_db = "database/{}".format(database[0])
-    
-win32api.SetFileAttributes(file,win32con.FILE_ATTRIBUTE_HIDDEN)
+
 
 # ! setup
 
@@ -137,20 +150,9 @@ def intializeApp():
     #  TODO: Displays on submission
     @app.route("/submission", methods=["POST"])
     def submission():
-        # * get the latest encrypted number
-        decryptedData = []
-        extractData(decryptedData, encrypt_file_path, "rb", True)
-
-        # if encrytion data is empty
-        num = (
-            lambda decryptedData: int(decryptedData[-1])
-            if len(decryptedData) != 0
-            else 999999
-        )(decryptedData)
-
-        # * resets user data
-        userStorage = [num + 1]
-
+       
+        userStorage = [0]
+    
         userStorage.append(request.form.get("Debit"))
         userStorage.append(request.form.get("Date"))
         userStorage.append(request.form.get("Pay"))
@@ -174,8 +176,23 @@ def intializeApp():
         userStorage.append(request.form.get("conveyer"))
         userStorage.append(request.form.get("Being"))
 
-        # * add information to encryption file
-        storeEncryptedData(str(userStorage[0]))
+        decryptedData = []
+        encrypt_file_path = cheque_encrypt_file_path if userStorage[6] != "Cash" else cash_encrypt_file_path
+        print(encrypt_file_path)
+        extractData(decryptedData, encrypt_file_path, "rb", True)
+        
+        # Reset user data
+        num = (
+            lambda decryptedData: int(decryptedData[-1])
+            if len(decryptedData) != 0
+            else 999999
+        )(decryptedData)
+        
+        userStorage[0] = str(num + 1)
+        
+        storeEncryptedData(userStorage[0], encrypt_file_path)
+        
+        userStorage[0] += print_year_range(datetime.strptime(userStorage[2], "%Y-%m-%d"))
 
         with open(file_path_db, "a", newline="") as file:
             writer = csv.writer(file, delimiter="\t")
@@ -184,12 +201,9 @@ def intializeApp():
         return render_template("voucher.html", data=userStorage)
 
     if __name__ == "__main__":
-        # app.run(debug=False)
-        webview.start()
+        app.run(debug=True)
+        # webview.start()
 
 
 # ! runs app
 intializeApp()
-
-
-

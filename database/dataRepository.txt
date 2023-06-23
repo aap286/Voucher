@@ -1,65 +1,9 @@
 No	 Debit A/c	  Date	 Pay to	 Rs. (In digits)	 Rs. (In words)	 Payment type	 Cheque Number	 Dated	 Bank Name	 Conveyer	 Being
-1000000	Plan 2	08/06/2023	test 7	32,049	thirty-two thousand and forty-nine	Cheque	3408	08/06/2023	JPMorgan Chase Bank	Iternary 2	lets see
-1000001	Plan 2	08/06/2023	test 7	32,049	thirty-two thousand and forty-nine	Cheque	3408	08/06/2023	JPMorgan Chase Bank	Iternary 2	lets see
-1000000	Plan 1	07/06/2023	r34	443	four hundred and forty-three	Cash	-	-	-	Iternary 1	434
-1000001	Plan 1	07/06/2023	r34	443	four hundred and forty-three	Cash	-	-	-	Iternary 1	434
-1000002	Plan 1	07/06/2023	r34	443	four hundred and forty-three	Cash	-	-	-	Iternary 1	434
-1000003	Plan 1	07/06/2023	r34	443	four hundred and forty-three	Cash	-	-	-	Iternary 1	434
-1000004	Plan 1	07/06/2023	r34	443	four hundred and forty-three	Cash	-	-	-	Iternary 1	434
-1000005	Plan 1	07/06/2023	r34	443	four hundred and forty-three	Cash	-	-	-	Iternary 1	434
-1000006	Plan 1	07/06/2023	r34	443	four hundred and forty-three	Cash	-	-	-	Iternary 1	434
-1000007	Plan 1	07/06/2023	r34	443	four hundred and forty-three	Cash	-	-	-	Iternary 1	434
-1000008	Plan 1	07/06/2023	r34	443	four hundred and forty-three	Cash	-	-	-	Iternary 1	434
-1000009	Plan 1	07/06/2023	r34	443	four hundred and forty-three	Cash	-	-	-	Iternary 1	434
-1000010	Plan 1	07/06/2023	r34	443	four hundred and forty-three	Cash	-	-	-	Iternary 1	434
-1000011	Plan 1	07/06/2023	r34	443	four hundred and forty-three	Cash	-	-	-	Iternary 1	434
-1000012	Plan 1	07/06/2023	r34	443	four hundred and forty-three	Cash	-	-	-	Iternary 1	434
-1000013	Plan 1	07/06/2023	r34	443	four hundred and forty-three	Cash	-	-	-	Iternary 1	434
-1000014	Plan 1	07/06/2023	r34	443	four hundred and forty-three	Cash	-	-	-	Iternary 1	434
-1000015	Plan 1	07/06/2023	r34	443	four hundred and forty-three	Cash	-	-	-	Iternary 1	434
-1000016	Plan 1	07/06/2023	r34	443	four hundred and forty-three	Cash	-	-	-	Iternary 1	434
-1000017	Plan 1	07/06/2023	r34	443	four hundred and forty-three	Cash	-	-	-	Iternary 1	434
-1000018	Plan 1	07/06/2023	r34	443	four hundred and forty-three	Cash	-	-	-	Iternary 1	434
-1000019	Plan 1	07/06/2023	r34	443	four hundred and forty-three	Cash	-	-	-	Iternary 1	434
-1000020	Plan 1	07/06/2023	r34	443	four hundred and forty-three	Cash	-	-	-	Iternary 1	434
-1000021	Plan 1	07/06/2023	r34	443	four hundred and forty-three	Cash	-	-	-	Iternary 1	434
-1000022	Plan 1	07/06/2023	r34	443	four hundred and forty-three	Cash	-	-	-	Iternary 1	434
-1000023	Plan 1	07/06/2023	r34	443	four hundred and forty-three	Cash	-	-	-	Iternary 1	434
-1000024	Plan 1	07/06/2023	r34	443	four hundred and forty-three	Cash	-	-	-	Iternary 1	434
-1000025	Plan 1	07/06/2023	r34	443	four hundred and forty-three	Cash	-	-	-	Iternary 1	434
-1000026	Plan 1	07/06/2023	r34	443	four hundred and forty-three	Cash	-	-	-	Iternary 1	434
-1000027	Plan 1	07/06/2023	r34	443	four hundred and forty-three	Cash	-	-	-	Iternary 1	434
-1000028	Plan 1	07/06/2023	r34	443	four hundred and forty-three	Cash	-	-	-	Iternary 1	434
-1000029	Plan 1	07/06/2023	r34	443	four hundred and forty-three	Cash	-	-	-	Iternary 1	434
-1000030	Plan 1	07/06/2023	r34	443	four hundred and forty-three	Cash	-	-	-	Iternary 1	434
-1000031	Plan 1	07/06/2023	r34	443	four hundred and forty-three	Cash	-	-	-	Iternary 1	434
-1000032	Plan 1	07/06/2023	r34	443	four hundred and forty-three	Cash	-	-	-	Iternary 1	434
-1000033	Plan 1	07/06/2023	r34	443	four hundred and forty-three	Cash	-	-	-	Iternary 1	434
-1000034	Plan 1	07/06/2023	r34	443	four hundred and forty-three	Cash	-	-	-	Iternary 1	434
-1000035	Plan 1	07/06/2023	r34	443	four hundred and forty-three	Cash	-	-	-	Iternary 1	434
-1000036	Plan 1	07/06/2023	r34	443	four hundred and forty-three	Cash	-	-	-	Iternary 1	434
-1000037	Plan 1	07/06/2023	r34	443	four hundred and forty-three	Cash	-	-	-	Iternary 1	434
-1000038	Plan 1	07/06/2023	r34	443	four hundred and forty-three	Cash	-	-	-	Iternary 1	434
-1000039	Plan 1	07/06/2023	r34	443	four hundred and forty-three	Cash	-	-	-	Iternary 1	434
-1000040	Plan 1	07/06/2023	r34	443	four hundred and forty-three	Cash	-	-	-	Iternary 1	434
-1000041	Plan 1	07/06/2023	r34	443	four hundred and forty-three	Cash	-	-	-	Iternary 1	434
-1000042	Plan 1	07/06/2023	r34	443	four hundred and forty-three	Cash	-	-	-	Iternary 1	434
-1000043	Plan 1	07/06/2023	r34	443	four hundred and forty-three	Cash	-	-	-	Iternary 1	434
-1000044	Plan 1	07/06/2023	r34	443	four hundred and forty-three	Cash	-	-	-	Iternary 1	434
-1000045	Plan 1	07/06/2023	r34	443	four hundred and forty-three	Cash	-	-	-	Iternary 1	434
-1000046	Plan 1	07/06/2023	r34	443	four hundred and forty-three	Cash	-	-	-	Iternary 1	434
-1000047	Plan 1	07/06/2023	r34	443	four hundred and forty-three	Cash	-	-	-	Iternary 1	434
-1000048	Plan 1	07/06/2023	r34	443	four hundred and forty-three	Cash	-	-	-	Iternary 1	434
-1000049	Plan 1	07/06/2023	r34	443	four hundred and forty-three	Cash	-	-	-	Iternary 1	434
-1000050	Plan 1	07/06/2023	r34	443	four hundred and forty-three	Cash	-	-	-	Iternary 1	434
-1000051	Plan 1	07/06/2023	r34	443	four hundred and forty-three	Cash	-	-	-	Iternary 1	434
-1000052	Plan 1	07/06/2023	r34	443	four hundred and forty-three	Cash	-	-	-	Iternary 1	434
-1000053	Plan 1	07/06/2023	r34	443	four hundred and forty-three	Cash	-	-	-	Iternary 1	434
-1000054	Plan 1	07/06/2023	r34	443	four hundred and forty-three	Cash	-	-	-	Iternary 1	434
-1000055	Plan 1	07/06/2023	r34	443	four hundred and forty-three	Cash	-	-	-	Iternary 1	434
-1000056	Plan 1	07/06/2023	r34	443	four hundred and forty-three	Cash	-	-	-	Iternary 1	434
-1000057	Plan 1	07/06/2023	r34	443	four hundred and forty-three	Cash	-	-	-	Iternary 1	434
-1000058	Plan 1	07/06/2023	r34	443	four hundred and forty-three	Cash	-	-	-	Iternary 1	434
-1000059	Plan 1	07/06/2023	r34	443	four hundred and forty-three	Cash	-	-	-	Iternary 1	434
-1000060	Plan 1	07/06/2023	r34	443	four hundred and forty-three	Cash	-	-	-	Iternary 1	434
-1000061	Plan 1	01/06/2023	2332	32	thirty-two	Cash	-	-	-	Iternary 1	3232
+1000000	Plan 1	2023-06-02	121	23,232	twenty-three thousand, two hundred and thirty-two	Cash	-	-	-	Iternary 1	2332
+1000001	Plan 1	2023-06-02	121	23,232	twenty-three thousand, two hundred and thirty-two	Cash	-	-	-	Iternary 1	2332
+1000002	Plan 1	2023-06-02	121	23,232	twenty-three thousand, two hundred and thirty-two	Cash	-	-	-	Iternary 1	2332
+1000004	Plan 1	2023-06-02	121	23,232	twenty-three thousand, two hundred and thirty-two	Cash	-	-	-	Iternary 1	2332
+1000005	Plan 1	2023-06-02	121	23,232	twenty-three thousand, two hundred and thirty-two	Cash	-	-	-	Iternary 1	2332
+1000007	Plan 1	2023-06-02	121	23,232	twenty-three thousand, two hundred and thirty-two	Cash	-	-	-	Iternary 1	2332
+1000008/2023-24	Plan 1	2023-06-02	121	23,232	twenty-three thousand, two hundred and thirty-two	Cash	-	-	-	Iternary 1	2332
+1000009/2023-24	Plan 1	2023-06-02	121	23,232	twenty-three thousand, two hundred and thirty-two	Cash	-	-	-	Iternary 1	2332
