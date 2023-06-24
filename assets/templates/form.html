@@ -6,19 +6,7 @@
       type="text/css"
       href="{{ url_for('static', filename='formStyle.css') }}"
     />
-
-    <!-- Include jQuery library -->
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
-    <!-- Include jQuery UI Datepicker CSS -->
-    <link
-      rel="stylesheet"
-      href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css"
-    />
-
-    <!-- Include jQuery UI Datepicker JavaScript -->
-    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-  </head>
+</head>
   <body>
     <div class="formContainer">
       <h1>Cash/Bank Voucher</h1>
@@ -57,7 +45,7 @@
           <select id="paymentType" name="paymentType" required>
             <option value="Cash">Cash</option>
             <option value="Cheque">Cheque</option>
-            <option value="NEFT/RTGS">NEFT/RTGS</option>
+            <option value="NEFT">NEFT</option>
           </select>
           <label for="paymentType">Paid by Cash/Cheque</label>
         </div>

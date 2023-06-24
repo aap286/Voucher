@@ -16,7 +16,7 @@
 
   @page {
     size: auto;
-    margin: 1cm;
+    margin: 0 1cm;
   }
 
   body {
@@ -30,7 +30,7 @@
 }
 
 html {
-  font-family: "Emerald Serif", serif;
+  font-family: serif;
 }
 
 /* ? buttons */
@@ -149,6 +149,4 @@ button:hover {
   color: #002d62;
 }
 
-button a:visited {
-  color: #002d62;
-}
+
