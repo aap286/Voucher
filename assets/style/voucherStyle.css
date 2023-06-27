@@ -59,7 +59,7 @@ button {
   display: flex;
   flex-direction: column;
   width: 800px;
-  margin: 50px auto 0;
+  margin: 10px auto 10px;
   font-size: 18px;
   color: #002d62;
   font-family: "";
@@ -88,13 +88,13 @@ button {
 }
 
 .double-col .left {
-  width: 70%;
+  width: 35%;
   text-align: left;
 }
 
 /* adjust height of pay to cell */
 .double-row {
-  min-height: 40px;
+  min-height: 21px;
 }
 
 .double-col,
@@ -103,13 +103,13 @@ button {
   margin-bottom: 10px;
 }
 .being {
-  height: 80px;
+  min-height: 80px;
   word-break: break-all;
 }
 
 /* adjusting row with triple columns */
 .double-col .triple:first-child {
-  width: 40%;
+  width: 35%;
 }
 
 .double-col .triple:nth-child(2) {
@@ -148,5 +148,3 @@ button:hover {
   background-color: #e3edf8;
   color: #002d62;
 }
-
-

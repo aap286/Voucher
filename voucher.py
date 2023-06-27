@@ -38,25 +38,21 @@ def createFolder(foldername, files):
     if not os.path.exists(foldername):
         # Create the folder
         os.makedirs(foldername)
-
-        for filename in files:
-            filepath = os.path.join(foldername, f"{filename}")
-
-            # Check if the file exists
-            if not os.path.exists(filepath):
-                # Create an empty file
-                with open(filepath, "w") as file:
-                    pass
-            else:
-                print(f"File '{filepath}' already exists. Skipping file creation.")
-
     else:
         print(f"Folder '{foldername}' already exists. Skipping folder creation.")
+    for filename in files:
+        filepath = os.path.join(foldername, f"{filename}")
+        # Check if the file exists
+        if not os.path.exists(filepath):
+            with open(filepath, "w") as file:
+                pass
+        else:
+            print(f"File '{filepath}' already exists. Skipping file creation.")
 
 
 # TODO: increments serial number if key exists else makes a new key
 def increment(file_path, arr):
-    payType = {"Cash": "cs", "Cheque": "ch", "NEFT": "ne"}
+    payType = {"Cash": ["CSH", 100000], "Cheque": ["CHQ", 200000], "NEFT": ["NFT", 300000]}
     form_date = datetime.strptime(arr[2], "%d/%m/%Y")
 
     with open(file_path, "rb") as file:
@@ -66,16 +62,16 @@ def increment(file_path, arr):
         else:
             decryptDict = {}
 
-    yearSelected = payType[arr[6]] + (
+    yearSelected = payType[arr[6]][0] + (
         str(form_date.year + 1) if form_date.month >= 4 else str(form_date.year)
     )
 
-    decryptDict[yearSelected] = decryptDict.get(yearSelected, 99999) + 1
+    decryptDict[yearSelected] = decryptDict.get(yearSelected, payType[arr[6]][1] ) + 1
 
     with open(file_path, "wb") as file:
         file.write(cipher.encrypt(json.dumps(decryptDict).encode()))
 
-    arr[0] = "{}/{}/{}".format(arr[6], decryptDict[yearSelected], yearRange(form_date))
+    arr[0] = "{}/{}/{}".format(payType[arr[6]][0], decryptDict[yearSelected], yearRange(form_date))
 
 
 #  TODO: returns the year range
@@ -139,7 +135,7 @@ def intializeApp():
     app = Flask(
         __name__, template_folder="assets/templates", static_folder="assets/style"
     )
-    window = webview.create_window("Voucher", app, width=1000, height=950)
+    window = webview.create_window("Voucher", app, width=700, height=800)
 
     # TODO: Handling error
     @app.errorhandler(Exception)
@@ -170,7 +166,7 @@ def intializeApp():
         number = int(request.form.get("Price"))
         userStorage.append(str(locale.format_string("%d", number, grouping=True)))
         userStorage.append(
-            num2words(request.form.get("Price"), lang="en_IN", to="cardinal")
+            num2words(request.form.get("Price"), lang="en_IN", to="cardinal") + " only"
         )
 
         userStorage.append(request.form.get("paymentType"))
