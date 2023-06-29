@@ -9,7 +9,7 @@
 </head>
   <body>
     <div class="formContainer">
-      <h1>Cash/Bank Voucher</h1>
+      <h1>Cash / Bank Voucher</h1>
       <form method="POST" action="/submission">
         
        <div class="couple">
@@ -35,20 +35,14 @@
         </div>
       </div>
 
-        <div class="InputContainer">
+       
+
+        <div class='couple'>
+           <div class="InputContainer">
           <input type="text" id="pay" name="Pay" required autocomplete="off" />
           <label for="Pay"> Pay To </label>
         </div>
 
-        <div class='couple'>
-          <div class="InputContainer">
-          <select id="paymentType" name="paymentType" required>
-            <option value="Cash">Cash</option>
-            <option value="Cheque">Cheque</option>
-            <option value="NEFT">NEFT</option>
-          </select>
-          <label for="paymentType">Paid by Cash/Cheque</label>
-        </div>
         <div class="InputContainer">
           <input
             type="text"
@@ -60,11 +54,23 @@
           />
           <label for="price"> Rs. (In digits) </label>
         </div>
+
+        <div class="InputContainer">
+          <select id="paymentType" name="paymentType" required>
+            <option value="Cash">Cash</option>
+            <option value="Cheque">Cheque</option>
+            <option value="NEFT">NEFT</option>
+          </select>
+          <label for="paymentType">Paid by Cash / Cheque</label>
+        </div>
       </div>
 
         <section id="chequeContainer">
 
-           <div class="InputContainer">
+          
+
+          <div class="couple">
+             <div class="InputContainer">
             <select type="text" id="bankName" name="bankName" required>
               {% for name in bankNames %}
               <option value="{{name}}">{{name}}</option>
@@ -72,9 +78,7 @@
             </select>
             <label for="Bank">Bank Name</label>
           </div>
-
-          <div class="couple">
-                      <div class="InputContainer">
+          <div class="InputContainer">
             <input
               type="text"
               pattern="[0-9]+"

@@ -1,17 +1,25 @@
+@font-face {
+  font-family: Rokkitt;
+  src: url(Rokkitt-Medium.ttf);
+}
+
+:root {
+  --pri: #002d62;
+  --sec: #fff;
+  --ter: #b3c6db;
+}
 
 @media print {
-  #print-button {
-    display: none;
-  }
-
-  #back-button {
+  #print-button,
+  #back-button,
+  #delete-button {
     display: none;
   }
 
   span {
     text-decoration: underline;
     text-underline-offset: 4px;
-    text-decoration-thickness: 2px;
+    text-decoration-thickness: 1.5px;
   }
 
   @page {
@@ -45,13 +53,46 @@ button {
   height: 50px;
   width: 10%;
   border-radius: 5px;
-  background-color: #b3c6db;
   outline: transparent;
   border: none;
-  color: white;
+  color: var(--sec);
   font-size: 20px;
-  transition: 0.5s;
+  transition: 0.3s;
   font-weight: 545;
+  font-family: Rokkitt;
+  cursor: pointer;
+}
+
+/* * print and back button styles */
+
+button a {
+  text-decoration: none;
+}
+
+#delete-button {
+  background-color: #ffd700;
+}
+
+#back-button {
+  background-color: #A9A9A9;
+  color:var(--sec);
+}
+
+#print-button {
+  background-color: var(--ter);
+}
+
+#delete-button:hover {
+  background-color: #ffe900;
+  color:var(--sec);
+}
+
+#back-button:hover {
+  background-color: #b8b8b8;
+}
+
+#print-button:hover {
+  background-color: #c3d7ec;
 }
 
 /* * voucher style */
@@ -61,8 +102,9 @@ button {
   width: 800px;
   margin: 10px auto 10px;
   font-size: 18px;
-  color: #002d62;
-  font-family: "";
+  color: var(--pri);
+  font-family: Rokkitt;
+  cursor: auto;
 }
 
 .voucher-title,
@@ -77,8 +119,8 @@ button {
 
 /* horizontal line for partitioning title and body */
 .line {
-  border-bottom: 2px solid #002d62;
-  margin-bottom: 10px;
+  border-bottom: 2px solid var(--pri);
+  margin-bottom: 5px;
 }
 
 /* rows for which two rows exists */
@@ -94,7 +136,7 @@ button {
 
 /* adjust height of pay to cell */
 .double-row {
-  min-height: 21px;
+  min-height: 20px;
 }
 
 .double-col,
@@ -105,6 +147,7 @@ button {
 .being {
   min-height: 80px;
   word-break: break-all;
+  line-height: 25px;
 }
 
 /* adjusting row with triple columns */
@@ -121,30 +164,19 @@ button {
   flex-direction: row;
   justify-content: space-around;
   gap: 20px;
-  border: 2px solid #002d62;
+  border: 2px solid var(--pri);
   padding: 0px 20px 0px;
 }
 /* top border line for signature destination */
 .last-row .triple {
   padding-top: 5px;
-  border-top: 2px solid #002d62;
+  border-top: 2px solid var(--pri);
   width: 16%;
   margin: 60px 0 10px;
 }
 
 .vertical-line {
-  border-left: 2px solid #002d62;
+  border-left: 2px solid var(--pri);
   height: 120px;
   margin: 0;
-}
-
-/* * print and back button styles */
-
-button a {
-  text-decoration: none;
-}
-
-button:hover {
-  background-color: #e3edf8;
-  color: #002d62;
 }

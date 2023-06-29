@@ -6,6 +6,36 @@
       type="text/css"
       href="{{ url_for('static', filename='voucherStyle.css') }}"
     />
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        var readButton = document.getElementById("delete-button");
+        readButton.addEventListener("click", function () {
+          var serial = document.querySelector(
+            ".double-col .triple span"
+          ).innerText;
+          var xhr = new XMLHttpRequest();
+          xhr.open("POST", "/dlt_route"); // Use POST method for sending data
+          xhr.setRequestHeader(
+            "Content-Type",
+            "application/x-www-form-urlencoded"
+          ); // Set the request header
+          xhr.send("data=" + encodeURIComponent(serial));
+          window.history.back();
+        });
+
+        function printing() {
+          var dltBtn = document.getElementById("delete-button");
+          dltBtn.style.opacity = 0.5;
+          dltBtn.style.cursor = "none";
+
+          window.print();
+        }
+
+        var printButton = document.getElementById("print-button");
+        printButton.addEventListener("click", printing);
+      });
+    </script>
   </head>
   <body>
     <div class="voucher-container">
@@ -30,7 +60,9 @@
 
       <div class="double-row">Pay To : <span>{{data[3]}}</span></div>
 
-      <div class="double-row">Rs. (In words) : <span>{{data[5].capitalize()}}</span></div>
+      <div class="double-row">
+        Rs. (In words) : <span>{{data[5].capitalize()}}</span>
+      </div>
 
       <div class="double-col">
         {% if data[6] == "Cheque" %}
@@ -52,19 +84,16 @@
         <div class="triple">President</div>
         <div class="triple">Treasurer</div>
         <div class="triple">Secretary</div>
-        <div class="triple">Convener <br>{{data[-2]}}</div>
+        <div class="triple">Convener <br />{{data[-2]}}</div>
         <div class="vertical-line"></div>
         <div class="triple">Receiver 's Signature</div>
       </div>
     </div>
 
     <div class="buttons">
-      <button id="print-button" onclick="window.print()">Print</button>
+      <button id="print-button" onclick="printing()">Print</button>
       <button id="back-button" onclick="window.history.back()">Back</button>
+      <button id="delete-button" onclick="">Delete</button>
     </div>
-
-    <script>
-      window.print();
-    </script>
   </body>
 </html>

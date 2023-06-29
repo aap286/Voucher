@@ -52,7 +52,11 @@ def createFolder(foldername, files):
 
 # TODO: increments serial number if key exists else makes a new key
 def increment(file_path, arr):
-    payType = {"Cash": ["CSH", 100000], "Cheque": ["CHQ", 200000], "NEFT": ["NFT", 300000]}
+    payType = {
+        "Cash": ["CSH", 99999],
+        "Cheque": ["CHQ", 199999],
+        "NEFT": ["NFT", 299999],
+    }
     form_date = datetime.strptime(arr[2], "%d/%m/%Y")
 
     with open(file_path, "rb") as file:
@@ -66,12 +70,42 @@ def increment(file_path, arr):
         str(form_date.year + 1) if form_date.month >= 4 else str(form_date.year)
     )
 
-    decryptDict[yearSelected] = decryptDict.get(yearSelected, payType[arr[6]][1] ) + 1
+    decryptDict[yearSelected] = decryptDict.get(yearSelected, payType[arr[6]][1]) + 1
+    print(yearSelected)
+    with open(file_path, "wb") as file:
+        file.write(cipher.encrypt(json.dumps(decryptDict).encode()))
+
+    arr[0] = "{}/{}/{}".format(
+        payType[arr[6]][0], decryptDict[yearSelected], yearRange(form_date)
+    )
+
+
+# Todo: decrements serial if delet button clicked
+def decrement(file_path, yearSelected):
+    with open(file_path, "rb") as file:
+        file_content = file.read()
+        if file_content != b"":
+            decryptDict = json.loads(cipher.decrypt(file_content).decode())
+            if yearSelected in decryptDict:
+                decryptDict[yearSelected] -= 1
 
     with open(file_path, "wb") as file:
         file.write(cipher.encrypt(json.dumps(decryptDict).encode()))
 
-    arr[0] = "{}/{}/{}".format(payType[arr[6]][0], decryptDict[yearSelected], yearRange(form_date))
+
+# Todo: deletes record if it exists
+def record_delete(file_pth, record):
+    with open(file_pth, "r") as file:
+        rows = list(csv.reader(file))
+
+    for row in rows:
+        if row[0].split("\t")[0] == record:
+            rows.remove(row)
+            print("Record removed successfully")
+
+    with open(file_pth, "w", newline="") as file:
+        writer = csv.writer(file)
+        writer.writerows(rows)
 
 
 #  TODO: returns the year range
@@ -106,13 +140,12 @@ configuration_file_path = [
 ]
 file_path_db = "🗄️ Database/{}".format(database[0])
 
-
 # ! setup
 
 # ? retrieve value for dropdown
 debiteAccounts = ["Plan 1", "Plan 2", "Plan 3"]
 bankNames = [
-    "JPMorgan Chase Bank",
+    "JP Morgan Chase Bank",
     "Bank of America",
     "Citibank",
     "PNC Bank",
@@ -135,7 +168,7 @@ def intializeApp():
     app = Flask(
         __name__, template_folder="assets/templates", static_folder="assets/style"
     )
-    window = webview.create_window("Voucher", app, width=700, height=800)
+    window = webview.create_window("Voucher", app, width=1000, height=800)
 
     # TODO: Handling error
     @app.errorhandler(Exception)
@@ -143,7 +176,7 @@ def intializeApp():
         return render_template("error.html")
 
     # TODO: Displays form
-    @app.route("/", methods=["GET"])
+    @app.get("/")
     def form():
         return render_template(
             "form.html",
@@ -152,8 +185,18 @@ def intializeApp():
             conveyers=conveyers,
         )
 
+    # Todo: delets current record
+    @app.post("/dlt_route")
+    def delete():
+        number = request.form.get("data")
+        key = number.split("/")[0] + "20" + number.split("/")[2].split('-').pop()
+        decrement(encrypt_path, key)
+        record_delete(file_path_db, number)
+
+        return ""
+
     #  TODO: Displays on submission
-    @app.route("/submission", methods=["POST"])
+    @app.post("/submission")
     def submission():
         userStorage = [0]
         userStorage.append(request.form.get("Debit"))
@@ -193,8 +236,8 @@ def intializeApp():
         return render_template("voucher.html", data=userStorage)
 
     if __name__ == "__main__":
-        # app.run(debug=True)
-        webview.start()
+        app.run(debug=True)
+        # webview.start()
 
 
 # ! runs app

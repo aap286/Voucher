@@ -1,9 +1,16 @@
+@font-face {
+    font-family: Rokkitt
+    ;
+    src: url(Rokkitt-Medium.ttf);
+}
+
+
 * {
   margin: 0;
   padding: 0;
   outline: transparent;
   box-sizing: border-box;
-  font-family: serif;
+  font-family: 'Rokkitt', serif;
 }
 
 html {
@@ -33,14 +40,28 @@ body {
   display: flex;
   flex-direction: row;
   gap: 20px;
-  /* justify-content: baseline; */
-  /* align-items: center; */
 }
 
 .couple .InputContainer select {
   height: 45px;
   width: 200px;
 }
+
+
+.couple .InputContainer #debit {
+  width: 420px;
+}
+
+.couple .InputContainer #pay,
+.couple .InputContainer #bankName {
+  width: 250px;
+}
+
+.couple .InputContainer #price,
+.couple .InputContainer #chequeNo {
+  width: 150px;
+}
+
 
 .couple .InputContainer input {
   height: 45px;
@@ -58,17 +79,12 @@ h1 {
 form {
   display: flex;
   flex-direction: column;
-  /* align-items: center; */
-  /* padding-left:10px ; */
 }
 
 .InputContainer {
   display: flex;
   flex-direction: column;
-  /* background-color: darkgoldenrod; */
-  /* height: 50px; */
   text-align: center;
-  /* vertical-align: bottom; */
 }
 
 .InputContainer {
@@ -85,7 +101,7 @@ form {
 .InputContainer select {
   width: 100%;
   padding: 10px 0;
-  font-size: 16px;
+  font-size: 19px;
   color: #ffffff;
   margin-bottom: 28px;
   border: none;
@@ -105,7 +121,7 @@ form {
 }
 
 .InputContainer textarea {
-  height: 150px;
+  height: 80px;
   resize: none;
 }
 
@@ -114,7 +130,7 @@ form {
   top: 0;
   left: 0;
   padding: 10px 0;
-  font-size: 16px;
+  font-size: 20px;
   color: #fff;
   pointer-events: none;
   transition: 0.5s;
@@ -129,7 +145,7 @@ form {
   top: -20px;
   left: 0;
   color: #03e9f4;
-  font-size: 12px;
+  font-size: 16px;
 }
 
 .InputContainer .has-input:invalid ~ label {
@@ -160,7 +176,7 @@ form {
   width: 100%;
   height: 100%;
   display: block;
-  font-size: 16px;
+  font-size: 25px;
   /* padding: 10px 0; */
 }
 
@@ -170,7 +186,6 @@ form {
   padding: 10px 20px;
   height: 50px;
   color: #03e9f4;
-  font-size: 16px;
   text-decoration: none;
   text-transform: uppercase;
   overflow: hidden;
@@ -291,6 +306,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   height: 24px;
   opacity: 1;
   cursor: pointer;
+  margin-left: 10px;
 }
 
 input[type="date"]::-webkit-datetime-edit {
@@ -302,12 +318,11 @@ input[type="date"]::-webkit-inner-spin-button,
 input[type="date"]::-webkit-outer-spin-button {
   appearance: none;
   margin: 0;
-}
+} 
 
 input[type="date"]::-webkit-datetime-edit-fields-wrapper {
   display: flex;
-  /* gap: 0.4em; */
-}
+} 
 
 input[type="date"]::-webkit-datetime-edit-text {
   flex: 1;
@@ -317,5 +332,4 @@ input[type="date"]::-webkit-datetime-edit-month-field,
 input[type="date"]::-webkit-datetime-edit-day-field,
 input[type="date"]::-webkit-datetime-edit-year-field {
   flex: 1;
-  min-width: 0;
 }
